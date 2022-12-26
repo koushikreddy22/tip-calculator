@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <h1>SPLITER</h1>
+        <div class="box">
+            <div class="left-box">
+                <div>
+                    <p>BILL</p>
+                    <input onchange="setBill()" id="bill-input" type="text" placeholder="$"/>
+                </div>
+                <div>
+                    <p></p>
+                    <div class="tip-select">
+                        <button onclick="addtip(5)">5%</button>
+                        <button onclick="addtip(10)">10%</button>
+                        <button onclick="addtip(15)">15%</button>
+                        <button onclick="addtip(25)">25%</button>
+                        <button onclick="addtip(50)">50%</button>
+                        <input  class="custom" type="text" placeholder="custom"/>
+                    </div>
+                </div>
+                <div>
+                    <p>Persons</p>
+                    <input id="persons" onchange="giveOutput()" type="text" placeholder="👤"/>
+                </div>
+            </div>
+            <div class="right-box">
+                <div class="amount">
+                    <div >
+                        <p>Tip Amount</p>
+                        <p>/person</p>
+                    </div>
+                       <h1 id="tip-amount">$0.00</h1>
+                </div>
+                <div class="amount">
+                    <div>
+                        <p>Total</p>
+                        <p>/person</p>
+                    </div>
+                       <h1 id="total">$0.00</h1>
+                </div>
+                <button id="reset" onclick="reset()">Reset</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function reset(){
+        bill.value=""
+        person.value=""
+        tipamount.innerText="$ 0.00"
+        total.innerText="$ 0.00"
+        res.style.backgroundColor="gray"
+    }
+    function giveOutput(){
+        console.log(billvalue+tipselect+persons.value)
+        tipamount.innerText=`$ ${(parseInt(billvalue)*tipselect / 100) / parseInt(person.value)}`
+        total.innerText=`$ ${ parseInt(billvalue) + (parseInt(billvalue) * tipselect/ 100) / parseInt(person.value)}`
+        res.style.backgroundColor="orange"
+    }
+     function addtip(tip){
+        tipselect=tip
+        console.log(tip)
+    }
+    var bill=document.getElementById('bill-input')
+    var person=document.getElementById('persons')
+    var tipamount=document.getElementById('tip-amount')
+    var total=document.getElementById('total')
+    var res=document.getElementById('reset')
+    var billvalue=0
+    res.style.backgroundColor="gray"
+    function setBill(){
+        billvalue=bill.value
+        console.log(billvalue)
+    }
+    var tipselect=0
+   
+    
+</script>
+</html>
